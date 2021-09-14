@@ -156,6 +156,7 @@ const apolloServer = new ApolloServer({
     }
     return { user, loader, res };
   },
+  introspection: true,
 });
 
 const startServer = apolloServer.start();
