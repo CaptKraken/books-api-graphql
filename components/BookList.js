@@ -24,7 +24,7 @@ const BookList = () => {
   const [books, setBooks] = useState();
   useEffect(() => {
     const books = async () => {
-      const res = await fetch(`http://localhost:3000/api/graphql`, {
+      const res = await fetch(process.env.API_LINK, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
