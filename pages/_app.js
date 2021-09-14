@@ -1,7 +1,7 @@
 import { useRouter } from "next/dist/client/router";
 import { IntlProvider } from "react-intl";
 import "tailwindcss/tailwind.css";
-import { AuthProvider } from "./AuthContext";
+import { AuthProvider } from "../context/AuthContext";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 const messages = {
   en: { hello: "Hello" },

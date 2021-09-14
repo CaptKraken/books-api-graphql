@@ -20,20 +20,37 @@ import {
   permission,
   upperDirectiveTransformer,
 } from "../../graphql/directives";
-import { encryptPassword, newCookie } from "../../utils";
+import { newCookie } from "../../utils";
 
 export const posgres = new knex({
   client: "pg",
   version: "8.7.1",
   connection: {
-    host: "127.0.0.1",
-    port: 5432,
-    user: "kimsong",
-    password: "",
-    database: "graphql-nextjs",
+    connectionString: process.env.PG_CONNECTION_STRING,
+    ssl: {
+      rejectUnauthorized: false,
+    },
+    // host: "ec2-3-219-111-26.compute-1.amazonaws.com",
+    // port: 5432,
+    // user: "qodcnitsbwfsgr",
+    // password:
+    //   "8f06410a496c2f7429030c66e42a6f71a8c892c45d97dfad80b4f6ab3445cd51",
+    // database: "digkr6f9gufdb",
   },
   debug: true,
 });
+// export const posgres = new knex({
+//   client: "pg",
+//   version: "8.7.1",
+//   connection: {
+//     host: "127.0.0.1",
+//     port: 5432,
+//     user: "kimsong",
+//     password: "",
+//     database: "graphql-nextjs",
+//   },
+//   debug: true,
+// });
 
 //#region TEST CONNECTION
 // posgres

@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useIntl } from "react-intl";
 import { createContext, useContext, useEffect, useState } from "react";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import { data } from "autoprefixer";
 const loadData = async (locale) => {
   const res = await fetch(`/api/hello`, {
