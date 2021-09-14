@@ -30,6 +30,7 @@ export function isCurrentUserDirectiveTransformer(schema, directiveName) {
   });
 }
 export function isAuthenticated(schema, directiveName) {
+  console.log("auth");
   return mapSchema(schema, {
     // Executes once for each object field in the schema
     [MapperKind.OBJECT_FIELD]: (fieldConfig) => {
@@ -39,14 +40,14 @@ export function isAuthenticated(schema, directiveName) {
         fieldConfig,
         directiveName
       )?.[0];
-
       if (isAuthenticatedDirective) {
         // Get this field's original resolver
         const { resolve = defaultFieldResolver } = fieldConfig;
+        console.log(fieldConfig.resolve);
         fieldConfig.resolve = async function (source, args, context, info) {
           if (!context.user || Object.keys(context.user).length === 0) {
             throw new Error(
-              `unauthorized. you have to be logged in to perform that action.`
+              `auth unauthorized. you have to be logged in to perform this action.`
             );
           }
           const result = await resolve(source, args, context, info);
@@ -72,10 +73,11 @@ export function permission(schema, directiveName) {
         // Get this field's original resolver
         const { resolve = defaultFieldResolver } = fieldConfig;
         fieldConfig.resolve = async function (source, args, context, info) {
-          if (!context?.user)
-            throw new Error(
-              `unauthorized. you have to be logged in to perform that action.`
-            );
+          console.log("hi");
+          // if (!context?.user)
+          //   throw new Error(
+          //     `unauthorized. you have to be logged in to perform that action.`
+          //   );
 
           if (
             permissionDirective.role !== context?.user?.role &&

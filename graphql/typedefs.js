@@ -20,7 +20,7 @@ export const typeDefs = gql`
   type Mutation {
     signUp(input: UserInput!): User
     addUser(input: UserInput!): User @permission(role: "admin")
-    addAuthor(name: String!): Author @permission(role: "editor")
+    addAuthor(name: String!): Author @authenticated @permission(role: "editor")
     editBook(id: ID!, input: BookInput): Book @permission(role: "editor")
     editUser(id: ID!, input: UserEdit!): User @permission(role: "admin")
     editMe(input: UserEdit!): User @authenticated
