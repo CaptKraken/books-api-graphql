@@ -4,7 +4,6 @@ import Link from "next/link";
 import parse from "html-react-parser";
 
 const BookPage = ({ book }) => {
-  console.log(book);
   return (
     <div className="flex gap-6 mt-6 flex-col md:flex-row justify-start md:items-start">
       <h2 className="block text-3xl md:hidden">{book.title}</h2>
@@ -67,6 +66,7 @@ const BookPage = ({ book }) => {
 export default BookPage;
 
 export async function getServerSideProps({ query: { id } }) {
+  console.log("hfi", process.env);
   const res = await fetch(process.env.API_LINK, {
     method: "POST",
     headers: {

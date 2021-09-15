@@ -1,11 +1,8 @@
 import { useQuery, gql } from "@apollo/client";
 import { useEffect, useState } from "react";
+import { API_URL } from "../destination";
 import BookCard from "./BookCard";
-import dynamic from "next/dynamic";
 import BookListLoading from "./skeletons/BookList";
-const BookCardLoading = dynamic(import("../components/skeletons/Books"), {
-  ssr: false,
-});
 const GET_ALL_BOOKS = gql`
   query Query {
     books: getBooks {
@@ -24,11 +21,10 @@ const BookList = () => {
   const [books, setBooks] = useState();
   useEffect(() => {
     const books = async () => {
-      const res = await fetch(process.env.API_LINK, {
+      const res = await fetch(API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // Authorization: currentUser.token ? `Bearer ${currentUser.token}` : "",
         },
         body: JSON.stringify({
           query: `
@@ -51,6 +47,8 @@ const BookList = () => {
         data: { books },
       } = await res.json();
       setBooks(books);
+      console.log("hi");
+      console.log(books);
     };
 
     books();
@@ -59,6 +57,8 @@ const BookList = () => {
   // const { loading, error, data } = useQuery(GET_ALL_BOOKS);
 
   // useEffect(() => {
+  //   console.log(data);
+  //   setBooks(data.books);
   // }, [data]);
   return (
     <div className={`mt-4 flex flex-col justify-center`}>

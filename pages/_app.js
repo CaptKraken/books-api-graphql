@@ -10,13 +10,14 @@ const messages = {
   es: { hello: "Hola" },
 };
 import "../styles/global.css";
+import { API_URL } from "../destination";
 
 const onError = (err) => {
   // console.log(err);
 };
 
 const client = new ApolloClient({
-  uri: "http://localhost:3000/api/graphql",
+  uri: API_URL,
   cache: new InMemoryCache(),
 });
 

@@ -114,7 +114,7 @@ const loader = {
   }),
 };
 //
-
+console.log(process.env);
 const apolloServer = new ApolloServer({
   schema,
   context: async ({ req, res }) => {
