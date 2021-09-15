@@ -278,7 +278,7 @@ export const resolvers = {
     },
     deleteBook: async (_par, args, _context, _info) => {
       const deletedBook = await posgres("books")
-        .where({ id: args.bookid })
+        .where({ book_id: args.bookid })
         .del()
         .returning("*");
       const isDeleted = await Boolean(deletedBook.length);
@@ -324,9 +324,7 @@ export const resolvers = {
     image_url: (book, _args, _context, _info) => book.image_url,
   },
   Author: {
-    id: (author, _args, _context, _info) => {
-      return author.author_id;
-    },
+    id: (author, _args, _context, _info) => author.author_id,
     name: (author, _args, _context, _info) => author.author_name,
   },
 };

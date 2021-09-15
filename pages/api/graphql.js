@@ -18,7 +18,6 @@ import {
   isAuthenticated,
   isCurrentUserDirectiveTransformer,
   permission,
-  upperDirectiveTransformer,
 } from "../../graphql/directives";
 import { newCookie } from "../../utils";
 
@@ -34,7 +33,7 @@ import { newCookie } from "../../utils";
 // });
 
 const connection =
-  process.NODE_ENV === "development"
+  process.env.NODE_ENV === "development"
     ? {
         host: "127.0.0.1",
         port: 5432,
@@ -124,8 +123,6 @@ const loader = {
     return ids.map((id) => lookup[id] || null);
   }),
 };
-//
-console.log(process.env);
 const apolloServer = new ApolloServer({
   schema,
   context: async ({ req, res }) => {
