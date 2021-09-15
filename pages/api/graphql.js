@@ -32,16 +32,22 @@ import { newCookie } from "../../utils";
 //   },
 //   debug: true,
 // });
+
+const connection =
+  process.NODE_ENV === "development"
+    ? {
+        host: "127.0.0.1",
+        port: 5432,
+        user: "kimsong",
+        password: "",
+        database: "graphql-nextjs",
+      }
+    : process.env.PG_CONNECTION_STRING;
+
 export const posgres = new knex({
   client: "pg",
   version: "8.7.1",
-  connection: {
-    host: "127.0.0.1",
-    port: 5432,
-    user: "kimsong",
-    password: "",
-    database: "graphql-nextjs",
-  },
+  connection,
   debug: true,
 });
 

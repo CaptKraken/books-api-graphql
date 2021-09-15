@@ -66,7 +66,7 @@ const BookPage = ({ book }) => {
 export default BookPage;
 
 export async function getServerSideProps({ query: { id } }) {
-  console.log("hfi", process.env);
+  console.log("hfi", process.env.API_LINK);
   const res = await fetch(process.env.API_LINK, {
     method: "POST",
     headers: {
@@ -97,7 +97,7 @@ export async function getServerSideProps({ query: { id } }) {
   const {
     data: { book },
   } = await res.json();
-
+  console.log("hi", book);
   return {
     props: { book },
   };
