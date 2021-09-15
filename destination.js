@@ -1,1 +1,1 @@
-export const API_URL = "/api/graphql";
+export const API_URL = "https://books-api-graphql.vercel.app/api/graphql";
