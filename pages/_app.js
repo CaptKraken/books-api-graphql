@@ -17,7 +17,7 @@ const onError = (err) => {
 };
 
 const client = new ApolloClient({
-  uri: API_URL,
+  uri: "/api/graphql",
   cache: new InMemoryCache(),
 });
 

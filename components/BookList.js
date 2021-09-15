@@ -19,10 +19,9 @@ const GET_ALL_BOOKS = gql`
 `;
 const BookList = () => {
   const [books, setBooks] = useState();
-  console.log(API_URL);
   useEffect(() => {
     const books = async () => {
-      const res = await fetch(API_URL, {
+      const res = await fetch("/api/graphql", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
