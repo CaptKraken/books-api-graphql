@@ -42,7 +42,12 @@ const connection =
         password: "",
         database: "graphql-nextjs",
       }
-    : process.env.PG_CONNECTION_STRING;
+    : {
+        connectionString: process.env.PG_CONNECTION_STRING,
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      };
 
 export const posgres = new knex({
   client: "pg",
